@@ -1,0 +1,1 @@
+select sum(nb_employees) as sum_nb_employees from DBT_TTHIRIET.RESTAURANTS
