@@ -1,0 +1,60 @@
+version: 2
+
+sources:
+  - name: business
+    database: DB_DBT_TTHIRIET_DEV
+    schema: source
+    tables:
+      - name: orders
+        description: This table contains all orders made by cutomers
+        columns:
+          - name: identifier
+            description: This is a unique identifier for the order
+            tests:
+              - not_null
+          - name: restaurant_identifier
+            description: This is the unique restaurant identifier for the order
+            tests:
+              - not_null
+              - relationships:
+                  field: identifier
+                  to: ref('restaurants')
+          - name: payment_method
+            description: This is the payment method of the order
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['cash', 'meal_ticket', 'card', 'cheque']
+          - name: amount
+            description: This is the amount of the order
+            tests:
+              - not_null
+          - name: created_at
+            description: This is the created date of the order
+            tests:
+              - not_null
+      - name: restaurants
+        description: This table contains all restaurants information
+        columns:
+          - name: identifier
+            description: This is a unique identifier for the restaurant
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: This is the name of the restaurant
+            tests:
+              - unique
+              - not_null
+          - name: address
+            description: This is the address of the restaurant
+            tests:
+              - not_null
+          - name: nb_employees
+            description: This is the number of employees of the restaurant
+            tests:
+              - not_null
+          - name: open_on_sunday
+            description: This indicate if the restaurant is open on sunday
+            tests:
+              - not_null
