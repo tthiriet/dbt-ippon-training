@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: base_orders
+    description: This table contains all orders made by cutomers
+    columns:
+      - name: identifier
+        description: This is a unique identifier for the order
+        tests:
+          - unique
+          - not_null
+      - name: restaurant_identifier
+        description: This is the unique restaurant identifier for the order
+        tests:
+          - not_null
+          - relationships:
+              field: identifier
+              to: ref('restaurants')
+      - name: payment_method
+        description: This is the payment method of the order
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['cash', 'meal_ticket', 'card', 'cheque']
+      - name: amount
+        description: This is the amount of the order
+        tests:
+          - not_null
+      - name: created_at
+        description: This is the created date of the order
+        tests:
+          - not_null

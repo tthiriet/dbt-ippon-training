@@ -1,0 +1,1 @@
+select identifier, name, address, nb_employees from {{ ref('base_restaurants') }} where open_on_sunday::boolean
