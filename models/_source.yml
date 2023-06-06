@@ -2,7 +2,12 @@ version: 2
 
 sources:
   - name: business
-    database: DB_DBT_TTHIRIET_DEV
+    database: |
+      {%- if target.name.upper() == "DEV" -%} DB_DBT_TTHIRIET_DEV
+      {%- elif target.name.upper() == "CI" -%} DB_DBT_TTHIRIET_DEV
+      {%- elif target.name.upper() == "PROD" -%} DB_DBT_TTHIRIET_PROD
+      {%- else -%} invalid_database
+      {%- endif -%}
     schema: source
     tables:
       - name: orders
