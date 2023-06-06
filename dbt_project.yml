@@ -37,3 +37,10 @@ models:
 
 vars:
   nb_restaurants_to_show: 4
+
+seeds:
+  dbt_ippon_training:
+    samples:
+      +schema: samples
+    expecteds:
+      +schema: expecteds
