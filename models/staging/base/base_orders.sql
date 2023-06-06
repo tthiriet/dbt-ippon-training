@@ -1,1 +1,1 @@
-select distinct * from {{ mockable_source("business", "orders", "sample_orders") }}
+select * from {{ mockable_source("business", "orders", "sample_orders") }}
