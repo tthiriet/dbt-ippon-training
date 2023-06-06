@@ -1,0 +1,8 @@
+version: 2
+
+models:
+  - name: restaurant_sunday
+    tests:
+      - dbt_utils.equality:
+          compare_model: ref('expected_restaurant_sunday')
+          tags: ['unit_testing']
